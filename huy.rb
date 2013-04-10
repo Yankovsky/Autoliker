@@ -28,4 +28,4 @@ t << Thread.new do
   end
 end
 
-t.each {|th| th.join }
+t.each { |th| th.join }
