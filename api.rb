@@ -6,6 +6,13 @@ module Api
         parameters: parameters.map { |k, v| "#{k}=#{v}" }.join('&'),
         access_token: access_token
     })
-    Net::HTTP.get(url)
+    https url
+  end
+
+  def https(uri)
+    http = Net::HTTP.new(uri.host, uri.port)
+    http.use_ssl = true
+    http.verify_mode = OpenSSL::SSL::VERIFY_NONE # read into this
+    http.get(uri.request_uri).body
   end
 end

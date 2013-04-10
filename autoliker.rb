@@ -3,7 +3,7 @@ require 'net/http'
 require 'json'
 require_relative 'vk'
 
-@interval = 3 # https://vk.com/pages?oid=-2226515&p=FAQ 5 сообщений в секунду
+@interval = 0.25 # https://vk.com/pages?oid=-2226515&p=FAQ 5 сообщений в секунду
 @app_id = 3555739 # Autoliker
 
 VK = Vk.new
@@ -78,17 +78,26 @@ def like_dislike_same_post(access_token)
 end
 
 
-# 8kIT2zSVuNb1Kg3v99WA
+# 8kIT2zSVuNb1Kg3v99WA some token
 
 # yankovsky id 137565
 # pavlova id 60338161
 # coder pavel id 12468007
-# pavel 45cc0899efd6586ad5a4e8631e0fcae059fb76ff6bc98789613272b5ce72ec540526f8bfd93e34001524d
-# andrey e0f1eb6e9b7a9b034df9a74d62ab1ef962f442ca3ec671d832838f73640d6019ae26734e49c8fd58cb532
+
+users = {
+  yankovsky: 137565,
+  pavel: 12468007,
+  pavlova: 60338161
+}
+
+tokens = {
+  pavel: '45cc0899efd6586ad5a4e8631e0fcae059fb76ff6bc98789613272b5ce72ec540526f8bfd93e34001524d',
+  andrey: 'e0f1eb6e9b7a9b034df9a74d62ab1ef962f442ca3ec671d832838f73640d6019ae26734e49c8fd58cb532'
+}
 
 #authorize
 
 #like_all_wall_posts 12468007, 'e0f1eb6e9b7a9b034df9a74d62ab1ef962f442ca3ec671d832838f73640d6019ae26734e49c8fd58cb532'
-like_all_wall_posts 137565, 'e0f1eb6e9b7a9b034df9a74d62ab1ef962f442ca3ec671d832838f73640d6019ae26734e49c8fd58cb532'
+like_all_wall_posts 43014898, tokens[:pavel]
 
 #api('wall.addLike', {owner_id: 12468007, post_id: 246, captcha_sid: 750546661016, captcha_key: 'qaav'},'45cc0899efd6586ad5a4e8631e0fcae059fb76ff6bc98789613272b5ce72ec540526f8bfd93e34001524d')
